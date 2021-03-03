@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">AJK Leathers</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/shopping-cart">
+            Shopping Cart
+            <span class="badge badge-warning badge-pill" *ngIf="(getQuantity() | async) as quantity">
+              {{quantity}}
+            </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about-us">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/shop">Shop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contactUs">Contact Us</a>
+        </li>
+        <li class="nav-item" *ngIf="!authService.isLoggedIn">
+          <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+        <li ngbDropdown class="nav-item dropdown" *ngIf="authService.isLoggedIn">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome: {{user}}</a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" routerLink="/my-orders">My Orders</a>
+            <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
+            <a class="dropdown-item" routerLink="/admin/products">Manage Products</a>
+            <a class="dropdown-item" (click)="logout()">Log Out</a>
+          </div>
+        </li>
+      </ul>
+
+
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" (click)="logIn()" type="button">Login</button>
+        <button class="btn btn-outline-success" (click)="register()" type="button">Register</button>
+      </form>
+    </div>
+  </div>
+</nav>

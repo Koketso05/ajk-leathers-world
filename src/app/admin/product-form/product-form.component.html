@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-6">
+    <form [formGroup]="productForm" (ngSubmit)="onSaveProduct()">
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Enter your email</mat-label>
+        <input type="text" matInput placeholder="title" formControlName="title" required>
+        <mat-error *ngIf="productForm.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field> -->
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" [value]="product?.title" formControlName="title">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea cols="3" class="form-control" id="description" [value]="product?.description" formControlName="description"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select class="form-control" id="category"  formControlName="category">
+          <option *ngFor="let category of categories$ | async" [value]="category">{{category}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Image Url</label>
+        <input type="text" class="form-control" id="imageUrl" [value]="product?.imageUrl" formControlName="imageUrl">
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <div class="input-group">
+          <span class="input-group-text">R</span>
+          <input type="number" class="form-control" id="price" [value]="product?.price" formControlName="price">
+        </div>
+      </div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">Save</button>
+    </form>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card w-100 h-100">
+      <img [src]="product?.imageUrl" class="card-img-top">
+    </div>
+  </div>
+
+</div>
+
+
+
+

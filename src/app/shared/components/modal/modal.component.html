@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Remove product</h1>
+<div mat-dialog-content>
+  Are you sure you want to remove product?
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close class="btn btn-danger" [mat-dialog-close]="true"><fa-icon [icon]="faCheck"></fa-icon>Yes</button>
+  <button mat-button mat-dialog-close class="btn btn-success ml-2" [mat-dialog-close]="false"><fa-icon [icon]="faTimes"></fa-icon>No</button>
+</div>

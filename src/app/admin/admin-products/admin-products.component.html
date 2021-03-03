@@ -1,0 +1,26 @@
+<button mat-stroked-button color="primary" class="mb-2" routerLink="/admin/products/new">New Product</button>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Category</th>
+      <th scope="col">Price</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let rowData of rowData$ | async; let i = index;">
+      <th scope="row">{{i+1}}</th>
+      <td>{{rowData.title}}</td>
+      <td>{{rowData.description}}</td>
+      <td>{{rowData.category}}</td>
+      <td>{{rowData.price | currency}}</td>
+      <td>
+        <a class="text-warning" [routerLink]="['/admin/products/', rowData.$key]"><fa-icon [icon]="faEdit"></fa-icon></a>
+        <a class="ml-3 text-danger" (click)="openDialog(rowData.$key)"><fa-icon [icon]="faTrash"></fa-icon></a></td>
+    </tr>
+  </tbody>
+</table>
